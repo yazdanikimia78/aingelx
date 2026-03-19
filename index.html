@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aingelx — AI Cold Emails That Book Clients</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080b14;
+      --bg2: #0d1120;
+      --card: #111827;
+      --border: #1f2a3f;
+      --accent: #6366f1;
+      --accent2: #8b5cf6;
+      --blue: #3b82f6;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --green: #10b981;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(8,11,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--accent2) !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse, rgba(99,102,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+
+    .badge span { color: var(--accent); }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #6366f1, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      padding: 15px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 40px rgba(99,102,241,0.35);
+    }
+
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 15px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); background: rgba(99,102,241,0.05); }
+
+    .stats {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 24px; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 64px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .step:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+    .step-num {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .step p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; }
+
+    /* ── EMAIL PREVIEW ── */
+    .preview-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      max-width: 720px;
+      margin: 0 auto;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+
+    .preview-bar {
+      background: #1a2035;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.r { background: #ef4444; }
+    .dot.y { background: #f59e0b; }
+    .dot.g { background: #10b981; }
+
+    .preview-label {
+      margin-left: 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .email-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .email-tab {
+      padding: 12px 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .email-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .email-body { padding: 32px; }
+
+    .email-meta { margin-bottom: 20px; }
+
+    .email-subject {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .email-from {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .email-from span { color: var(--accent); }
+
+    .email-text {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+    }
+
+    .email-text p { margin-bottom: 12px; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .plan {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      transition: transform 0.3s, border-color 0.3s;
+      position: relative;
+    }
+
+    .plan:hover { transform: translateY(-4px); }
+
+    .plan.featured {
+      border-color: var(--accent);
+      background: linear-gradient(160deg, #111827, #0f1628);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -13px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+    }
+
+    .plan-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .plan-price {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 4px;
+    }
+
+    .plan-price sup {
+      font-size: 1.4rem;
+      font-weight: 700;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .plan-period {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .plan-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 28px;
+    }
+
+    .plan-features { list-style: none; margin-bottom: 36px; }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .plan-btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      box-shadow: 0 0 30px rgba(99,102,241,0.3);
+    }
+
+    .plan-btn.primary:hover { opacity: 0.9; }
+
+    .plan-btn.outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .plan-btn.outline:hover { border-color: var(--accent); background: rgba(99,102,241,0.05); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+
+    .faq-q {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .faq-a {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.1));
+      border-top: 1px solid rgba(99,102,241,0.2);
+      border-bottom: 1px solid rgba(99,102,241,0.2);
+      text-align: center;
+      padding: 96px 24px;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      margin-bottom: 16px;
+    }
+
+    .cta-band p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 36px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── GLOW DIVIDER ── */
+    .glow-line {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+      opacity: 0.4;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      nav { padding: 16px 20px; }
+      .stats { gap: 28px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .email-body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Aingelx</div>
+  <ul>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#sample">Sample</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#pricing" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">🤖 <span>Powered by AI</span> — Cold outreach, on autopilot</div>
+  <h1>Cold emails that <em>actually book clients</em></h1>
+  <p class="hero-sub">We write high-converting email sequences tailored to your business — delivered in 48 hours. No fluff. No filler. Just results.</p>
+  <div class="hero-ctas">
+    <a href="#pricing" class="btn-primary">Get My Email Sequence →</a>
+    <a href="#sample" class="btn-secondary">See a Sample First</a>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">78%</div>
+      <div class="stat-label">of leads book with the first responder</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">48h</div>
+      <div class="stat-label">average delivery time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5x</div>
+      <div class="stat-label">average reply rate vs generic emails</div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="section-label">The Process</div>
+    <h2 class="section-title">Done for you in 3 steps</h2>
+    <p class="section-sub">Tell us about your business. We handle the rest — no back-and-forth, no revisions, no waiting.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Tell us your niche</h3>
+        <p>Share your target customer, what you offer, and the outcome you deliver. A 2-minute form — that's it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We write your sequence</h3>
+        <p>Our AI engine crafts a personalized 5-email follow-up sequence optimized for replies and conversions.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Copy, paste, close deals</h3>
+        <p>You receive a clean Google Doc ready to paste into any email tool. Send it yourself or have us set it up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE EMAIL -->
+<section id="sample" style="background: var(--bg2);">
+  <div class="container">
+    <div class="section-label">Real Example</div>
+    <h2 class="section-title">See what you're getting</h2>
+    <p class="section-sub">A real 5-email sequence for a dental practice targeting whitening patients. Yours would be written for your exact business.</p>
+
+    <div class="preview-wrap">
+      <div class="preview-bar">
+        <div class="dot r"></div>
+        <div class="dot y"></div>
+        <div class="dot g"></div>
+        <span class="preview-label">Email Sequence Preview — Dental Practice / Teeth Whitening</span>
+      </div>
+      <div class="email-tabs">
+        <div class="email-tab active">Email 1</div>
+        <div class="email-tab">Email 2</div>
+        <div class="email-tab">Email 3</div>
+        <div class="email-tab">Email 4</div>
+        <div class="email-tab">Email 5</div>
+      </div>
+      <div class="email-body">
+        <div class="email-meta">
+          <div class="email-subject">Subject: Quick question, Dr. Johnson</div>
+          <div class="email-from">From: <span>you@yourpractice.com</span> · Send on Day 1</div>
+        </div>
+        <div class="email-text">
+          <p>Hi Dr. Johnson,</p>
+          <p>Most people in San Diego searching "teeth whitening" book with whoever follows up first.</p>
+          <p>Is your practice set up to be that practice?</p>
+          <p>— [Your name]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">Simple Pricing</div>
+    <h2 class="section-title">Pick your plan</h2>
+    <p class="section-sub">No subscriptions unless you want one. Pay once, own the sequence forever.</p>
+
+    <div class="pricing-grid">
+      <!-- Basic -->
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><sup>$</sup>97</div>
+        <div class="plan-period">one-time payment</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>5-email follow-up sequence</li>
+          <li>Custom-written for your niche</li>
+          <li>Delivered as Google Doc</li>
+          <li>Ready to copy-paste</li>
+          <li>48-hour delivery</li>
+        </ul>
+        <a href="#" class="plan-btn outline">Get Started</a>
+      </div>
+
+      <!-- Featured -->
+      <div class="plan featured">
+        <div class="popular-badge">MOST POPULAR</div>
+        <div class="plan-name">Done-For-You</div>
+        <div class="plan-price"><sup>$</sup>297</div>
+        <div class="plan-period">one-time payment</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Everything in Starter</li>
+          <li>We set it up in your email tool</li>
+          <li>Subject line A/B variants</li>
+          <li>Follow-up timing strategy</li>
+          <li>1 round of revisions</li>
+          <li>Priority 24-hour delivery</li>
+        </ul>
+        <a href="#" class="plan-btn primary">Get Started →</a>
+      </div>
+
+      <!-- Retainer -->
+      <div class="plan">
+        <div class="plan-name">Monthly</div>
+        <div class="plan-price"><sup>$</sup>197</div>
+        <div class="plan-period">per month, cancel anytime</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Fresh sequence every month</li>
+          <li>Ongoing split testing</li>
+          <li>Performance review</li>
+          <li>Slack/email support</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#" class="plan-btn outline">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: var(--bg2);">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Questions answered</h2>
+    <p class="section-sub" style="margin-bottom: 48px;">Straight answers — no fluff.</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How is this different from a template?</div>
+        <div class="faq-a">Templates are generic. Your sequence is written specifically for your industry, your offer, and your target customer — from scratch every time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What kind of businesses is this for?</div>
+        <div class="faq-a">Any business that sells a service and needs to follow up with leads. Dentists, realtors, agencies, consultants, SaaS — if you have customers, this works.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need any tools or software?</div>
+        <div class="faq-a">For the Starter plan, just any email you already use. For Done-For-You, we'll work with whatever tool you have (Gmail, Outlook, Mailchimp, etc.).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How fast will I get results?</div>
+        <div class="faq-a">Your sequence is delivered in 24-48 hours. Results depend on your list quality — most clients see replies within their first week of sending.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I'm not happy with it?</div>
+        <div class="faq-a">The Done-For-You plan includes one round of revisions. If you're still not satisfied, reach out and we'll make it right.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="container">
+    <h2>Ready to stop losing leads?</h2>
+    <p>Get your custom email sequence in 48 hours. No contracts. No BS.</p>
+    <a href="#pricing" class="btn-primary">Get My Sequence Now →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Aingelx · <a href="mailto:hello@aingelx.com">hello@aingelx.com</a> · All rights reserved</p>
+</footer>
+
+</body>
+</html>
