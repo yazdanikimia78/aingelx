@@ -2,3 +2,6 @@
   for = "/*.html"
   [headers.values]
     Content-Type = "text/html; charset=utf-8"
+
+[functions]
+  node_bundler = "esbuild"
