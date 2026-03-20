@@ -37,7 +37,7 @@ exports.handler = async (event) => {
     host: 'smtp.improvmx.com',
     port: 587,
     secure: false,
-    auth: { user: 'hello@aingelx.com', pass: 'mpgddwlvputozbzy' }
+    auth: { user: 'hello@aingelx.com', pass: process.env.SMTP_PASSWORD }
   });
 
   // ── Confirmation to customer ─────────────────────────────────────────────────
