@@ -20,7 +20,7 @@ exports.handler = async (event) => {
     secure: false,
     auth: {
       user: 'hello@aingelx.com',
-      pass: process.env.SMTP_PASSWORD
+      pass: 'mpgddwlvputozbzy'
     }
   });
 

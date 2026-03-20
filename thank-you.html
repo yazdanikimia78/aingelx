@@ -7,23 +7,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #0a0a0f; --surface: #111118; --border: rgba(255,255,255,0.08); --text: #f0f0f5; --muted: #888899; --accent: #6366f1; --accent2: #8b5cf6; }
+    :root { --bg: #0a0a0f; --surface: #111118; --border: rgba(255,255,255,0.08); --text: #f0f0f5; --muted: #888899; --accent: #6366f1; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
     nav { padding: 20px 40px; border-bottom: 1px solid var(--border); }
     .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; }
     main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 20px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 56px 48px; max-width: 540px; width: 100%; text-align: center; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 56px 48px; max-width: 520px; width: 100%; text-align: center; }
     .icon { width: 72px; height: 72px; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
     .icon svg { width: 32px; height: 32px; stroke: #a5b4fc; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
-    p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 12px; }
-    .steps { text-align: left; margin: 32px 0; display: flex; flex-direction: column; gap: 16px; }
-    .step { display: flex; gap: 14px; align-items: flex-start; }
-    .dot { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 0.75rem; font-weight: 700; }
-    .step-text { font-size: 0.875rem; color: var(--muted); line-height: 1.5; padding-top: 4px; }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 36px; }
+    .steps { text-align: left; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 32px; }
+    .step { display: flex; gap: 14px; margin-bottom: 16px; }
+    .step:last-child { margin-bottom: 0; }
+    .dot { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #8b5cf6); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 0.7rem; font-weight: 700; }
+    .step-text { font-size: 0.875rem; color: var(--muted); line-height: 1.5; padding-top: 3px; }
     .step-text strong { display: block; color: var(--text); margin-bottom: 2px; }
-    .back { display: inline-block; color: #a5b4fc; text-decoration: none; font-size: 0.875rem; margin-top: 8px; }
-    .back:hover { text-decoration: underline; }
+    .back-link { color: var(--muted); font-size: 0.85rem; text-decoration: none; }
+    .back-link:hover { color: var(--text); }
     @media (max-width: 600px) { .card { padding: 36px 24px; } h1 { font-size: 1.6rem; } }
   </style>
 </head>
@@ -35,15 +36,22 @@
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h1>You're all set.</h1>
-      <p>Payment confirmed. A confirmation email is on its way to your inbox — check your spam folder if you don't see it within a few minutes.</p>
-      <p>Your personalized email sequence is now being crafted.</p>
+      <p class="subtitle">Payment confirmed. Check your inbox — we just sent a confirmation with everything you need to know.</p>
       <div class="steps">
-        <div class="step"><div class="dot">1</div><div class="step-text"><strong>Research & drafting</strong>We review your business details and write your sequence from scratch.</div></div>
-        <div class="step"><div class="dot">2</div><div class="step-text"><strong>Quality review</strong>Every email reviewed for tone, clarity, and conversion potential.</div></div>
-        <div class="step"><div class="dot">3</div><div class="step-text"><strong>Delivery to your inbox</strong>Your completed sequence arrives within 24–48 hours.</div></div>
+        <div class="step">
+          <div class="dot">1</div>
+          <div class="step-text"><strong>We start writing immediately</strong>Your business details are with our team. Drafting begins now.</div>
+        </div>
+        <div class="step">
+          <div class="dot">2</div>
+          <div class="step-text"><strong>Quality review</strong>Every email checked for tone, clarity, and conversion before it leaves our hands.</div>
+        </div>
+        <div class="step">
+          <div class="dot">3</div>
+          <div class="step-text"><strong>Delivered to your inbox</strong>Your completed sequence arrives within 24–48 hours. We'll reach out if we need anything.</div>
+        </div>
       </div>
-      <p style="font-size:0.85rem;">Questions? Email us at <a href="mailto:hello@aingelx.com" style="color:#a5b4fc;">hello@aingelx.com</a></p>
-      <a href="/" class="back">← Back to aingelx.com</a>
+      <a href="/" class="back-link">← Back to aingelx.com</a>
     </div>
   </main>
 </body>
