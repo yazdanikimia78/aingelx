@@ -996,62 +996,11 @@
 
 <!-- CONTACT FORM -->
 <section id="contact" style="background: var(--bg2);">
-  <div class="container">
+  <div class="container" style="text-align:center; padding: 80px 20px;">
     <div class="section-label">Get Started</div>
-    <h2 class="section-title">Request your email sequence</h2>
-    <p class="section-sub">Fill in the form below and we'll get back to you within a few hours to confirm your order and next steps.</p>
-
-    <div class="contact-wrap">
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm" onsubmit="handleSubmit(event)">
-        <input type="hidden" name="form-name" value="contact" />
-        <p style="display:none;"><input name="bot-field" /></p>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="jane@company.com" required />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="business">Business / Website</label>
-          <input type="text" id="business" name="business" placeholder="Smith Dental Studio · smithdental.com" required />
-        </div>
-
-        <div class="form-group">
-          <label for="plan">Plan</label>
-          <select id="plan" name="plan" required>
-            <option value="" disabled selected>Select a plan…</option>
-            <option value="starter">Starter — $97 (one-time)</option>
-            <option value="done-for-you">Done For You — $297 (one-time)</option>
-            <option value="monthly">Monthly Retainer — $197/mo</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="target">Who are your target customers?</label>
-          <input type="text" id="target" name="target" placeholder="e.g. Homeowners in Texas looking for roofing services" required />
-        </div>
-
-        <div class="form-group">
-          <label for="goal">What outcome do you want the emails to drive?</label>
-          <textarea id="goal" name="goal" placeholder="e.g. Book a free consultation call, get a quote, sign up for a demo…" required></textarea>
-        </div>
-
-        <button type="submit" class="form-submit">Submit My Request →</button>
-        <p class="form-note">We'll confirm your order and send payment details within a few hours.</p>
-      </form>
-
-      <div class="form-success" id="formSuccess">
-        <div class="icon">✅</div>
-        <h3>Request received!</h3>
-        <p>We'll review your details and reach out within a few hours to confirm your order and send payment instructions.</p>
-      </div>
-    </div>
+    <h2 class="section-title">Ready to start?</h2>
+    <p class="section-sub">Tell us about your business and we'll craft your sequence. Payment comes after — takes 2 minutes.</p>
+    <a href="/onboarding.html" class="btn-primary" style="display:inline-block; margin-top: 12px;">Get My Email Sequence →</a>
   </div>
 </section>
 
@@ -1060,7 +1009,7 @@
   <div class="container">
     <h2>Ready to stop losing leads?</h2>
     <p>Get your professionally written email sequence delivered in 48 hours. Flexible plans, no long-term commitments.</p>
-    <a href="#contact" class="btn-primary">Request Your Sequence →</a>
+    <a href="/onboarding.html" class="btn-primary">Request Your Sequence →</a>
   </div>
 </div>
 
