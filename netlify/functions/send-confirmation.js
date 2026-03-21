@@ -15,11 +15,11 @@ exports.handler = async (event) => {
   const { name, email, plan, business, target, outcome, tool } = data;
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.improvmx.com',
+    host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     auth: {
-      user: 'hello@aingelx.com',
+      user: 'aingelxteam@gmail.com',
       pass: process.env.SMTP_PASSWORD
     }
   });

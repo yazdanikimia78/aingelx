@@ -34,10 +34,10 @@ exports.handler = async (event) => {
   if (!customerEmail) return { statusCode: 200, body: 'No email found' };
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.improvmx.com',
+    host: 'smtp.gmail.com',
     port: 587,
     secure: false,
-    auth: { user: 'hello@aingelx.com', pass: process.env.SMTP_PASSWORD }
+    auth: { user: 'aingelxteam@gmail.com', pass: process.env.SMTP_PASSWORD }
   });
 
   // ── Confirmation to customer ─────────────────────────────────────────────────
